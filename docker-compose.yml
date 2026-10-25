@@ -1,0 +1,17 @@
+services:
+  mitadt-event-portal:
+    container_name: mitadt-event-portal-live
+    image: mitadt-event-portal:latest
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+      - "3001:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DATABASE_URL=file:./dev.db
+      - JWT_SECRET=mit-adt-event-system-secure-jwt-secret-key-2026
+      - NEXT_PUBLIC_APP_NAME=MIT ADT Event Management Portal
+      - NEXT_PUBLIC_COLLEGE_NAME=MIT Art, Design and Technology University, Pune
+    volumes:
+      - ./prisma:/app/prisma
